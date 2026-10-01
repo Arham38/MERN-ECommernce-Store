@@ -68,7 +68,7 @@ const ProductDetails = () => {
       <div>
         <Link
           to="/"
-          className="text-white font-semibold hover:underline ml-[10rem]"
+          className="page mb-4 block font-semibold text-white hover:underline"
         >
           Go Back
         </Link>
@@ -82,7 +82,7 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
+          <div className="page mt-6 flex flex-wrap items-start gap-8">
             <div>
               <img
                 src={product.image}
@@ -166,7 +166,7 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
+            <div className="mt-12 w-full">
               <ProductTabs
                 loadingProductReview={loadingProductReview}
                 userInfo={userInfo}

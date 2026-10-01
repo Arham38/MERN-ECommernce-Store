@@ -59,6 +59,8 @@ const loginUser = asyncHandler(async (req, res) => {
       return;
     }
   }
+
+  res.status(401).json({ message: "Invalid email or password" });
 });
 
 const logoutCurrentUser = asyncHandler(async (req, res) => {

@@ -92,7 +92,7 @@ const AdminDashboard = () => {
     <>
       <AdminMenu />
 
-      <section className="xl:ml-[4rem] md:ml-[0rem]">
+      <section className="page">
         <div className="w-[80%] flex justify-around flex-wrap">
           <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
             <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
@@ -101,7 +101,7 @@ const AdminDashboard = () => {
 
             <p className="mt-5">Sales</p>
             <h1 className="text-xl font-bold">
-              $ {isLoading ? <Loader /> : sales.totalSales.toFixed(2)}
+              $ {isLoading ? <Loader /> : sales?.totalSales?.toFixed(2) || "0.00"}
             </h1>
           </div>
           <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
@@ -126,7 +126,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="ml-[10rem] mt-[4rem]">
+        <div className="mt-12">
           <Chart
             options={state.options}
             series={state.series}

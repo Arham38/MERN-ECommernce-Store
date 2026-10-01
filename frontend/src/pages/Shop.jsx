@@ -27,7 +27,7 @@ const Shop = () => {
 
   useEffect(() => {
     if (!categoriesQuery.isLoading) {
-      dispatch(setCategories(categoriesQuery.data));
+      dispatch(setCategories(categoriesQuery.data || []));
     }
   }, [categoriesQuery.data, dispatch]);
 
@@ -35,7 +35,7 @@ const Shop = () => {
     if (!checked.length || !radio.length) {
       if (!filteredProductsQuery.isLoading) {
         // Filter products based on both checked categories and price filter
-        const filteredProducts = filteredProductsQuery.data.filter(
+        const filteredProducts = (filteredProductsQuery.data || []).filter(
           (product) => {
             // Check if the product price includes the entered price filter value
             return (
@@ -82,9 +82,9 @@ const Shop = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="flex md:flex-row">
-          <div className="bg-[#151515] p-3 mt-2 mb-2">
+      <div className="page">
+        <div className="flex flex-col gap-6 lg:flex-row">
+          <div className="h-fit rounded-2xl bg-[#151515] p-4 lg:w-64">
             <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
               Filter by Categories
             </h2>
@@ -164,12 +164,14 @@ const Shop = () => {
 
           <div className="p-3">
             <h2 className="h4 text-center mb-2">{products?.length} Products</h2>
-            <div className="flex flex-wrap">
-              {products.length === 0 ? (
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {filteredProductsQuery.isLoading ? (
                 <Loader />
+              ) : !products?.length ? (
+                <p className="text-zinc-400">No products found.</p>
               ) : (
-                products?.map((p) => (
-                  <div className="p-3" key={p._id}>
+                products.map((p) => (
+                  <div key={p._id}>
                     <ProductCard p={p} />
                   </div>
                 ))

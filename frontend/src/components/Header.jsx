@@ -6,29 +6,18 @@ import ProductCarousel from "../pages/Products/ProductCarousel";
 const Header = () => {
   const { data, isLoading, error } = useGetTopProductsQuery();
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <h1>ERROR</h1>;
-  }
+  if (isLoading) return <Loader />;
+  if (error || !data?.length) return null;
 
   return (
-    <>
-      <div className="flex justify-around">
-        <div className="xl:block lg:hidden md:hidden:sm:hidden">
-          <div className="grid grid-cols-2">
-            {data.map((product) => (
-              <div key={product._id}>
-                <SmallProduct product={product} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <ProductCarousel />
+    <section className="page grid gap-8 lg:grid-cols-2">
+      <div className="grid grid-cols-2 gap-4">
+        {data.slice(0, 4).map((product) => (
+          <SmallProduct key={product._id} product={product} />
+        ))}
       </div>
-    </>
+      <ProductCarousel />
+    </section>
   );
 };
 

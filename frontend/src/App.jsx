@@ -6,9 +6,9 @@ import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="top-right" theme="dark" />
       <Navigation />
-      <main className="py-3">
+      <main className="min-h-screen pt-20">
         <Outlet />
       </main>
     </>

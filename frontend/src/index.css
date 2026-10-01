@@ -3,11 +3,31 @@
 @tailwind utilities;
 
 body {
-  background: #0f0f10;
-  color: #fff;
+  background: #0b0b0d;
+  color: #f4f4f5;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
 input,
-textarea {
-  color: #000;
+textarea,
+select {
+  color: #111;
+}
+
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-7xl px-4 pb-16 sm:px-6;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-pink-600 px-5 py-2.5 font-semibold text-white transition hover:bg-pink-500 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-2xl border border-white/10 bg-[#141416] shadow-lg shadow-black/30;
+  }
+
+  .field {
+    @apply mt-1 w-full rounded-lg border border-white/10 bg-white px-3 py-2.5 text-black outline-none ring-pink-500/40 focus:ring-2;
+  }
 }
